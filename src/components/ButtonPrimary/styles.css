@@ -1,0 +1,19 @@
+.dsc-btn {
+    border-radius: 4px;
+    height: 42px;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dsc-color-btn-primary);
+    color: #FFF;
+    width: 100%;
+
+}
+
+.dsc-btn-blue {
+    background-color: var(--dsc-color-btn-primary);
+    color: #fff;
+    border: none;
+}
