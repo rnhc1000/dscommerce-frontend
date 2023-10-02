@@ -45,7 +45,7 @@ The design is structured as shown:
 - Live Site URL: [] 
 ## _Built with_
 | Git | ReacJS | Vite | Yarn | TypeScript | JavaScript | Visual Studio
-|----------|----------|----------|----------|----------|----------|
+|----------|----------|----------|----------|----------|----------|----------|
  ![](https://ferreiras.dev.br/assets/images/icons/git-scm-icon.svg) | ![](https://ferreiras.dev.br/assets/images/icons/react.svg) | ![](https://ferreiras.dev.br/assets/images/icons/vite.svg) | ![](https://ferreiras.dev.br/assets/images/icons/yarn-title.svg) | ![](https://ferreiras.dev.br/assets/images/icons/ts-logo.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-javascript.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-visual-studio-code.svg)  
 
  ## _What I practiced_
