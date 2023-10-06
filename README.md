@@ -20,15 +20,27 @@ Going down to key concepts of ReactJS such as
 ## _Overview_
 The design is structured as shown:
 - src|
+    - App.tsx
     - assets|
-
     - components|
         - ButtonPrimary
+          - index.tsx
+          - styles.css
         - ButtonSecondary
+          - ...
+        - CatalogCard
+          - ...
         - HeaderClient
+          - ...
         - ProductCategory
+          - ...
         - ProductDetailsCard
+          - ...
+        - SearchBar
+          - ...
    - routes
+        - Catalog
+        - ProductDetails
    - App.tsx
    - index.css
    - main.tsx
@@ -49,7 +61,7 @@ The design is structured as shown:
  ![](https://ferreiras.dev.br/assets/images/icons/git-scm-icon.svg) | ![](https://ferreiras.dev.br/assets/images/icons/react.svg) | ![](https://ferreiras.dev.br/assets/images/icons/vite.svg) | ![](https://ferreiras.dev.br/assets/images/icons/yarn-title.svg) | ![](https://ferreiras.dev.br/assets/images/icons/ts-logo.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-javascript.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-visual-studio-code.svg)  
 
  ## _What I practiced_
-```js
+```jsx
 import ProductDetails from './routes/ProductDetails';
 
 function App() {
@@ -63,25 +75,40 @@ function App() {
 export default App
 
 ``` 
-```ts
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+```tsx
+import './styles.css';
+import ButtonBlue from "../../components/ButtonPrimary";
+import ButtonWhite from "../../components/ButtonSecondary";
+import HeaderClient from "../../components/HeaderClient";
+import ProductDetailsCard from "../../components/ProductDetailsCard";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+
+export default function ProductDetails() {
+
+    return (
+        <>
+        <HeaderClient />
+        <main>
+          <section id="product-details-section" className="dsc-container">
+            <ProductDetailsCard />
+            <div className="dsc-btn-page-container">
+              <ButtonBlue />
+              <ButtonWhite />
+            </div>
+          </section>
+        </main>
+      </>
+    );
+}
 
 ``` 
 
 ## _Continued development_
-- Next step: keep moving 
+- Next step: Keep moving forward 
 ### _Useful resources_
-- [https://react.org] Nice!.
-- [https://yarnpkg.org/] Mandatory pit stop at this site.
+- [https://reactjs.org] React lets you build user interfaces out of individual pieces called components!.
+- [https://yarnpkg.org/] Open-source package manager used to manage dependencies in  JavaScript.
+- [https://vitejs.dev/guide/] Build tool that aims to provide a faster and leaner development experience for modern web projects.
 ## _Author_
 - Website - [https://ferreiras.dev.br] 
 ## Acknowledgments

@@ -1,12 +1,11 @@
 
-// import ProductDetails from './routes/ProductDetails';
-import HeaderPortfolio from './components/HeaderPortfolio';
+import ProductDetails from './routes/ProductDetails';
 // import Catalog from './routes/Catalog';
 
 function App() {
 
   return (
-    <HeaderPortfolio />
+    <ProductDetails />
   )
 
 }
