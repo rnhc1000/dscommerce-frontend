@@ -154,18 +154,7 @@ a:hover {
     grid-gap: 20px;
 }
 
-.dsc-btn-next-page {
 
-    border: 1px solid var(--dsc-color-btn-primary);
-    padding: 10px;
-    border-radius: 4px;
-    color: var(--dsc-color-btn-primary);
-    text-align: center;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-
-}
 
 @media (min-width: 576px) {
     .dsc-btn-page-container {
@@ -214,53 +203,7 @@ a:hover {
     font-size: 16px;
 }
 
-.dsc-search-bar {
-    display: flex;
-    height: 40px;
-    color: var(--dsc-color-font-primary);
-    margin: 10px auto;
-}
 
-.dsc-search-bar button,
-.dsc-search-bar input {
-
-    border: 1px solid var(--dsc-color-card-border);
-    background-color: var(--dsc-color-card-bg);
-    text-align: center;
-}
-
-.dsc-search-bar button {
-    width: 40px;
-    color: var(--dsc-color-btn-primary);
-}
-
-.dsc-search-bar button[type="submit"] {
-    border-right: none;
-    border-radius: 4px 0 0 4px;
-}
-
-
-.dsc-search-bar button[type="reset"] {
-    border-left: none;
-    border-radius: 0 4px 4px 0;
-}
-
-.dsc-search-bar input {
-    border-right: none;
-    border-left: none;
-    width: 100%;
-    padding: 0 10px;
-    font-size: 16px;
-}
-
-.dsc-search-bar input:focus {
-
-    outline: none;
-}
-
-.dsc-search-bar input::placeholder {
-    color: var(--dsc-color-font-placeholder);
-}
 
 .dsc-form {
     display: flex;
