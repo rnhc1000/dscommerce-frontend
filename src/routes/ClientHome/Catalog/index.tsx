@@ -1,9 +1,8 @@
 import './styles.css';
-import HeaderClient from '../../components/HeaderClient';
-import SearchBar from '../../components/SearchBar';
-import CatalogCard from '../../components/CatalogCard';
-import LoadBar from '../../components/LoadBar';
-import { ProductDTO } from '../../models/product';
+import SearchBar from '../../../components/SearchBar';
+import CatalogCard from '../../../components/CatalogCard';
+import LoadBar from '../../../components/LoadBar';
+import { ProductDTO } from '../../../models/product';
 
 const product: ProductDTO = {
     id: 2,
@@ -33,7 +32,6 @@ export default function Catalog() {
 
     return (
         <>
-        <HeaderClient />
             <main>
                 <section id="dsc-catalog-section" className="dsc-container">
                     <SearchBar />

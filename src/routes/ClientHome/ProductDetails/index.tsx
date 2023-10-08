@@ -1,9 +1,8 @@
 import './styles.css';
-import ButtonBlue from "../../components/ButtonPrimary";
-import ButtonWhite from "../../components/ButtonSecondary";
-import HeaderClient from "../../components/HeaderClient";
-import ProductDetailsCard from "../../components/ProductDetailsCard";
-import { ProductDTO } from '../../models/product';
+import ButtonBlue from "../../../components/ButtonPrimary";
+import ButtonWhite from "../../../components/ButtonSecondary";
+import ProductDetailsCard from "../../../components/ProductDetailsCard";
+import { ProductDTO } from '../../../models/product';
 
 const product: ProductDTO = {
   id: 2,
@@ -32,7 +31,6 @@ export default function ProductDetails() {
 
   return (
     <>
-      <HeaderClient />
       <main>
         <section id="product-details-section" className="dsc-container">
           <ProductDetailsCard product={ product }/>
