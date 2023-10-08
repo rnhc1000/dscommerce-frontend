@@ -1,10 +1,14 @@
 import './styles.css';
 
-export default function ButtonWhite() {
+type Props = {
+ text: string;
+}
+
+export default function ButtonWhite({text}: Props) {
 
     return (
         <div className="dsc-btn dsc-btn-white">
-        Inicio
+        { text }
       </div>
     );
 
