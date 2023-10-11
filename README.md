@@ -7,6 +7,7 @@ Going down to key concepts of ReactJS such as
 - TypeScript
 - Yarn
 - Vite
+- Axios
 ## _Table of contents_
 - [Overview](#overview)
 - [Screenshot](#screenshot)
@@ -56,49 +57,61 @@ The design is structured as shown:
 ## _Links_
 - Live Site URL: [] 
 ## _Built with_
-| Git | ReacJS | Vite | Yarn | TypeScript | JavaScript | Visual Studio
-|----------|----------|----------|----------|----------|----------|----------|
- ![](https://ferreiras.dev.br/assets/images/icons/git-scm-icon.svg) | ![](https://ferreiras.dev.br/assets/images/icons/react.svg) | ![](https://ferreiras.dev.br/assets/images/icons/vite.svg) | ![](https://ferreiras.dev.br/assets/images/icons/yarn-title.svg) | ![](https://ferreiras.dev.br/assets/images/icons/ts-logo.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-javascript.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-visual-studio-code.svg)  
+| Git | ReacJS | Vite | Yarn | TypeScript | JavaScript | Visual Studio | Visual Studio |
+|----------|----------|----------|----------|----------|----------|----------| ----------|
+ ![](https://ferreiras.dev.br/assets/images/icons/git-scm-icon.svg) | ![](https://ferreiras.dev.br/assets/images/icons/react.svg) | ![](https://ferreiras.dev.br/assets/images/icons/vite.svg) | ![](https://ferreiras.dev.br/assets/images/icons/yarn-title.svg) | ![](https://ferreiras.dev.br/assets/images/icons/ts-logo.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-javascript.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-visual-studio-code.svg) | ![](https://axios-http.com/assets/logo.svg) 
 
  ## _What I practiced_
 ```jsx
-import ProductDetails from './routes/ProductDetails';
-
-function App() {
-
-  return (
-    <ProductDetails />
-  )
-
-}
-
-export default App
-
-``` 
-```tsx
 import './styles.css';
-import ButtonBlue from "../../components/ButtonPrimary";
-import ButtonWhite from "../../components/ButtonSecondary";
-import HeaderClient from "../../components/HeaderClient";
-import ProductDetailsCard from "../../components/ProductDetailsCard";
-
+import ButtonBlue from "../../../components/ButtonPrimary";
+import ButtonWhite from "../../../components/ButtonSecondary";
+import ProductDetailsCard from "../../../components/ProductDetailsCard";
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { ProductDTO } from '../../../models/product';
+import axios from 'axios';
 
 export default function ProductDetails() {
 
-    return (
-        <>
-        <HeaderClient />
-        <main>
-          <section id="product-details-section" className="dsc-container">
-            <ProductDetailsCard />
-            <div className="dsc-btn-page-container">
-              <ButtonBlue />
-              <ButtonWhite />
-            </div>
-          </section>
-        </main>
-      </>
-    );
+  const [ product, setProduct] = useState<ProductDTO>();
+  useEffect(() => {
+    
+    axios.get("http://10.0.0.195:8080/products/1")
+    .then(response => {
+      console.log(response.data);
+      setProduct(response.data);
+    })
+    .catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else {
+        console.log('Error', error.message);
+      }
+    })
+
+  }, []);
+
+  return (
+    <>
+      <main>
+        <section id="product-details-section" className="dsc-container">
+          {
+            product &&
+            <ProductDetailsCard product={product} />
+          }
+          <div className="dsc-btn-page-container">
+            <ButtonBlue text="Comprar" />
+            <Link to={'/'}>
+              <ButtonWhite text="Inicio" />
+            </Link>
+          </div>
+        </section>
+      </main>
+    </>
+  );
 }
 
 ``` 
