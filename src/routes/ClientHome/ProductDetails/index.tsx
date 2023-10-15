@@ -8,6 +8,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
 // import axios from 'axios';
+import * as cartService from '../../../services/cart-service';
 
 
 
@@ -19,31 +20,40 @@ export default function ProductDetails() {
 
   const navigate = useNavigate();
 
-  const [ product, setProduct] = useState<ProductDTO>();
+  const [product, setProduct] = useState<ProductDTO>();
   useEffect(() => {
     productService.findById(Number(params.productId))
-    .then(response => {
-      console.log(response.data);
-      setProduct(response.data);
-    })
-    .catch(() => {
-      navigate("/");
-      // if (error.response) {
+      .then(response => {
+        console.log(response.data);
+        setProduct(response.data);
+      })
+      .catch(() => {
+        navigate("/");
+        // if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-          // console.log(error.response.data);
-          // console.log(error.response.status);
-          // console.log(error.response.headers);
-      // } else {
-      //   // Something happened in setting up the request that triggered an Error
-      //   console.log('Error', error.message);
-      // }
-    });
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+        // } else {
+        //   // Something happened in setting up the request that triggered an Error
+        //   console.log('Error', error.message);
+        // }
+      });
 
     // const prod = productService.findById(Number(params.productId));
     // setProduct(prod)
   }, []);
   //const product = productService.findById(Number(params.productId));
+
+  function handleBuyClick() {
+
+    if (product) {
+
+      cartService.addProduct(product);
+      navigate("/cart");
+    }
+  }
 
   return (
     <>
@@ -54,7 +64,9 @@ export default function ProductDetails() {
             <ProductDetailsCard product={product} />
           }
           <div className="dsc-btn-page-container">
-            <ButtonBlue text="Comprar" />
+            <div onClick={handleBuyClick}>
+              <ButtonBlue text="Comprar" />
+            </div>
             <Link to={'/'}>
               <ButtonWhite text="Inicio" />
             </Link>

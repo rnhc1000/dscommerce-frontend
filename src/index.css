@@ -299,9 +299,6 @@ a:hover {
     font-size: 14px;
 }
 
-.dsc-table thead th {
-    /* text-align: center; */
-}
 
 
 .dsc-table tbody {
@@ -362,19 +359,19 @@ a:hover {
 
 .dsc-table td:nth-child(2) {
     padding-left: 10px;
+    border-top-left-radius: 10px;
+
 }
 
-.dsc-table td:nth-child(2) {
-    border-top-left-radius: 10px;
-}
+
 
 .dsc-table td:last-child {
     border-top-right-radius: 10px;
+    padding-right: 10px
+
 }
 
-.dsc-table td:last-child {
-    padding-right: 10px
-}
+
 
 /**
 $grid-breakpoints: (
