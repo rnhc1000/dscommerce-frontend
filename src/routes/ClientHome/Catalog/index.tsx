@@ -2,10 +2,10 @@ import './styles.css';
 import SearchBar from '../../../components/SearchBar';
 import CatalogCard from '../../../components/CatalogCard';
 import LoadBar from '../../../components/LoadBar';
-// import * as productService from '../../../services/product-service';
+import * as productService from '../../../services/product-service';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 export default function Catalog() {
@@ -23,7 +23,7 @@ export default function Catalog() {
    */
 
   useEffect(() => {
-    axios.get("http://10.0.0.195:8080/products?size=12")
+    productService.findAll()
     .then(response => {
       setProducts(response.data.content)
     });
