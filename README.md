@@ -53,7 +53,7 @@ The design is structured as shown:
 - public|
 
 ## _Screenshot_
-[![](./DSCommerce.png)]()
+[![](./dscommerce-frontEnd.png)]()
 ## _Links_
 - Live Site URL: [] 
 ## _Built with_
