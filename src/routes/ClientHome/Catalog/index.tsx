@@ -8,6 +8,10 @@ import { ProductDTO } from '../../../models/product';
 // import axios from 'axios';
 
 
+type QueryParams = {
+  page: number;
+  name: string;
+}
 export default function Catalog() {
 
   /**
@@ -15,9 +19,14 @@ export default function Catalog() {
    * e inicializado com um lista vazia[]
    */
 
+
+  const [isLastPage, setIsLastPage] = useState(false);
   const [products, setProducts] = useState<ProductDTO[]>([]);
 
-  const [productName, setProductName] = useState("");
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: ""
+  });
 
   /**
    * Ao montar o componente buscar os primeiros elementos
@@ -26,14 +35,21 @@ export default function Catalog() {
    */
 
   useEffect(() => {
-    productService.findPageRequest(0, productName)
+    productService.findPageRequest(queryParams.page, queryParams.name)
       .then(response => {
-        setProducts(response.data.content)
+        const nextPage = response.data.content;
+        setProducts(products.concat(nextPage));
+        setIsLastPage(response.data.last);
       });
-  }, [productName]);
+  }, [queryParams]);
 
   function handleSearch(searchText: string) {
-    setProductName(searchText);
+    setProducts([]);
+    setQueryParams({ ...queryParams, page: 0, name: searchText });
+  }
+
+  function handlePageClick() {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   }
 
   return (
@@ -50,8 +66,12 @@ export default function Catalog() {
             }
 
           </div>
-
-          <LoadBar />
+          {
+            !isLastPage &&
+            <div onClick={handlePageClick}>
+              <LoadBar />
+            </div>
+          }
         </section>
       </main>
     </>
