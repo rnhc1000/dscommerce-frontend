@@ -10,7 +10,7 @@
 
     border: 1px solid var(--dsc-color-card-border);
     background-color: var(--dsc-color-card-bg);
-    text-align: center;
+    text-align: left;
 }
 
 .dsc-search-bar button {

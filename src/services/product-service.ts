@@ -1,10 +1,23 @@
 // import { ProductDTO } from "../models/product";
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../utils/system';
 
-export function findAll() {
+export function findPageRequest(page: number, name: string, size = 12, sort="name") {
     // return products;
-    return axios.get(`${BASE_URL}/products?size=12`);
+
+    const config : AxiosRequestConfig = {
+        method: "GET",
+        baseURL: BASE_URL,
+        url: "/products",
+        params: {
+            page,
+            name,
+            size,
+            sort
+        }
+
+    }
+    return axios(config);
 }
 
 export function findById(id: number)  {

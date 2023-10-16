@@ -17,22 +17,30 @@ export default function Catalog() {
 
   const [products, setProducts] = useState<ProductDTO[]>([]);
 
+  const [productName, setProductName] = useState("");
+
   /**
    * Ao montar o componente buscar os primeiros elementos
    * useEffect(() => {}, []) argumento função e lista de dependencias
+   * Se productName mudar a função findPageRequest é executada
    */
 
   useEffect(() => {
-    productService.findAll()
-    .then(response => {
-      setProducts(response.data.content)
-    });
-  },[]);
+    productService.findPageRequest(0, productName)
+      .then(response => {
+        setProducts(response.data.content)
+      });
+  }, [productName]);
+
+  function handleSearch(searchText: string) {
+    setProductName(searchText);
+  }
+
   return (
     <>
       <main>
         <section id="dsc-catalog-section" className="dsc-container">
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
 
           <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
             {
