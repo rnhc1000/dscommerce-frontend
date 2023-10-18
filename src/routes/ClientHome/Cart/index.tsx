@@ -26,6 +26,7 @@ export default function Cart() {
     const { setContextCartCount } = useContext(ContextCartCount);
 
     const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
+    
     function handleClearClick() {
         cartService.clearCart();
         updateCart();
