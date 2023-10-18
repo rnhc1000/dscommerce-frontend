@@ -2,6 +2,7 @@ import './styles.css';
 import { useState } from 'react';
 import { CredentialsDTO } from '../../../models/auth';
 import { loginRequest } from '../../../services/auth-service';
+import * as authService from '../../../services/auth-service';
 
 
 export default function Login() {
@@ -10,12 +11,25 @@ export default function Login() {
         password: ""
     });
 
-    function handleSubmit(event: any){
+    function handleSubmit(event: any) {
         event.preventDefault();
-
-        loginRequest(formData)
+        authService.loginRequest(formData)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log("Erro no login", error)
+        })
+        // loginRequest(formData)
     }
-    
+
+    function handleInputChange(event: any) {
+
+        const value = event.target.value; // valor da caixa
+        const name = event.target.name; // nome da caixa
+        setFormData({...formData, [name]: value})
+    }
+
     return (
         <>
             <main>
@@ -26,17 +40,24 @@ export default function Login() {
                             <div className="dsc-form-controls-container">
                                 <div>
                                     <input
+                                        name="username"
+                                        value={formData.username}
                                         className="dsc-form-control"
                                         type="text"
-                                        placeholder="Email">
+                                        placeholder="Email"
+                                        onChange={handleInputChange}>
                                     </input>
                                     <div className="dsc-form-error"></div>
                                 </div>
                                 <div>
                                     <input
+                                        name="password"
+                                        value={formData.password}
                                         className="dsc-form-control"
                                         type="password"
-                                        placeholder="Senha"></input>
+                                        placeholder="Senha"
+                                        onChange={handleInputChange}>
+                                    </input>
                                 </div>
                             </div>
 
