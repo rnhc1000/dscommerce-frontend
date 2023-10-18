@@ -1,8 +1,24 @@
 import './styles.css';
 import homeSvg from '../../assets/home.svg';
 import productImg from '../../assets/products.svg';
+import { useEffect, useState } from 'react';
+import { userDTO } from '../../models/user';
+import * as userService from '../../services/user-service';
 
 export default function HeaderAdmin() {
+
+    const[user, setUser] = useState<userDTO>();
+
+    useEffect(() => {
+        userService.findMe()
+        .then(response => {
+            setUser(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }, [])
+
     return (
         <>
         <header className="dsc-header-admin">
@@ -20,7 +36,7 @@ export default function HeaderAdmin() {
                         </div>
                     </div>
                     <div className="dsc-logged-user">
-                        <p>Maria Silva</p>
+                        <p>{user?.name}</p>
                         <a href="#">Sair</a>
                     </div>
                 </div>
