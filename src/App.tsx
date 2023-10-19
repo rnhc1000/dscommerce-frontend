@@ -16,6 +16,8 @@ import { ContextToken } from './utils/context-token';
 import * as authService from './services/auth-service';
 import * as cartService from './services/cart-service';
 import Confirmation from './routes/ClientHome/Confirmation';
+import ProductListing from './routes/Admin/ProductListing';
+import ProductForm from './routes/Admin/ProductForm';
 function App() {
 
   const [contextCartCount, setContextCartCount] = useState<number>(0);
@@ -38,6 +40,7 @@ function App() {
         <HistoryRouter history={history}>
           <Routes>
             <Route path="/" element={<ClientHome />} >
+
               <Route index element={<Catalog />}></Route>
               <Route path="catalog" element={<Catalog />}></Route>
               <Route path="product-details/:productId" element={<ProductDetails />}></Route>
@@ -45,21 +48,26 @@ function App() {
               <Route path="login" element={<Login />}></Route>
 
               <Route path="confirmation/:orderId" element={
+                
                 <PrivateRoute>
                   <Confirmation />
                 </PrivateRoute>}>
               </Route>
+
             </Route>
-            <Route path="*" element={<Navigate to="/" />}></Route>
+
             <Route path="/admin/" element={
 
               <PrivateRoute roles={['ROLE_ADMIN']}>
                 <Admin />
-              </PrivateRoute>
+              </PrivateRoute>}>
+              <Route index element={<Navigate to="/admin/home" />}></Route>
+              <Route path="home" element={<AdminHome />}></Route>
+              <Route path="products" element={<ProductListing />}></Route>
+              <Route path="products/:productId" element={<ProductForm />}></Route>
 
-            }>
-              <Route index element={<AdminHome />}></Route>
             </Route>
+            <Route path="*" element={<Navigate to="/" />}></Route>
           </Routes>
           {/* </BrowserRouter> */}
         </HistoryRouter>
