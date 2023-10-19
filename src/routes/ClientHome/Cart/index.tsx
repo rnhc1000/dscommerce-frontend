@@ -2,8 +2,9 @@ import './styles.css';
 import { useContext, useState } from 'react';
 import * as cartService from '../../../services/cart-service';
 import { OrderDTO } from '../../../models/order';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ContextCartCount } from '../../../utils/contex-cart';
+import * as orderService from '../../../services/order-service';
 
 // const item1: OrderItemDTO = new OrderItemDTO(
 //     4,
@@ -26,7 +27,9 @@ export default function Cart() {
     const { setContextCartCount } = useContext(ContextCartCount);
 
     const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
-    
+
+    const navigate = useNavigate();
+
     function handleClearClick() {
         cartService.clearCart();
         updateCart();
@@ -46,6 +49,18 @@ export default function Cart() {
         const newCart = cartService.getCart();
         setCart(newCart);
         setContextCartCount(newCart.items.length);
+    }
+
+
+    function handlePlaceOrderClick() {
+
+        orderService.placeOrderRequest(cart)
+        .then(response => {
+            cartService.clearCart();
+            setContextCartCount(0);
+            navigate(`/confirmation/${response.data.id}`)
+        })
+
     }
 
     return (
@@ -83,8 +98,10 @@ export default function Cart() {
                                     <div className="dsc-cart-total-container">
                                         <h3>R$ {cart.total.toFixed(2)}</h3>
                                     </div>
-                                </div><div className="dsc-btn-page-container">
-                                    <div className="dsc-btn dsc-btn-blue">
+                                </div>
+                                <div className="dsc-btn-page-container">
+                                   
+                                    <div onClick={handlePlaceOrderClick} className="dsc-btn dsc-btn-blue">
                                         Finalizar pedido
                                     </div>
                                     <Link to="/catalog">
