@@ -30,10 +30,10 @@ function App() {
           <Route path="*" element={<Navigate to="/" />}></Route>
           <Route path="/admin/" element={
 
-            <PrivateRoute>
+            <PrivateRoute roles ={[ 'ROLE_ADMIN' ]}>
               <Admin />
             </PrivateRoute>
-            
+
           }>
             <Route index element={<AdminHome />}></Route>
           </Route>
