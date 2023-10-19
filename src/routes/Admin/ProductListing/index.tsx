@@ -6,6 +6,7 @@ import * as productService from '../../../services/product-service';
 import { ProductDTO } from '../../../models/product';
 import SearchBar from '../../../components/SearchBar';
 import LoadBar from '../../../components/LoadBar';
+import DialogInfo from '../../../components/DialogInfo';
 
 type QueryParams = {
     page: number;
@@ -13,6 +14,12 @@ type QueryParams = {
 }
 
 export default function ProductListing() {
+
+    const [dialogInfoData, setDialogInfoData] = useState({
+        visible: false,
+        message: "Operação com sucesso"
+    });
+
     const [queryParams, setQueryParams] = useState<QueryParams>({
         page: 0,
         name: ""
@@ -40,6 +47,14 @@ export default function ProductListing() {
         setQueryParams({ ...queryParams, page: queryParams.page + 1 });
     }
 
+    function handleDialogInfoClose() {
+        setDialogInfoData({ ...dialogInfoData, visible: false })
+    }
+
+
+    function handleDeleteClick() {
+        setDialogInfoData({ ...dialogInfoData, visible: true })
+    }
     return (
         <main>
             <section id="product-listing-section" className="dsc-container">
@@ -70,7 +85,7 @@ export default function ProductListing() {
                                     <td className="dsc-tb768">R$ {product.price.toFixed(2)}</td>
                                     <td className="dsc-txt-left">{product.name}</td>
                                     <td><img className="dsc-product-listing-btn" src={editImg} alt="Editar"></img></td>
-                                    <td><img className="dsc-product-listing-btn" src={deleteImg} alt="Deletar"></img></td>
+                                    <td><img onClick={handleDeleteClick} className="dsc-product-listing-btn" src={deleteImg} alt="Deletar"></img></td>
                                 </tr>
                             ))
                         }
@@ -83,6 +98,10 @@ export default function ProductListing() {
                     </div>
                 }
             </section>
+            {
+                dialogInfoData.visible &&
+                <DialogInfo message={dialogInfoData.message} onDialogClose={handleDialogInfoClose} />
+            }
         </main>
     );
 }
