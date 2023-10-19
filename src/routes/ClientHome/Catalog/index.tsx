@@ -5,6 +5,7 @@ import LoadBar from '../../../components/LoadBar';
 import * as productService from '../../../services/product-service';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
+import { isAuthenticated } from '../../../services/auth-service';
 // import axios from 'axios';
 
 
@@ -35,6 +36,7 @@ export default function Catalog() {
    */
 
   useEffect(() => {
+    console.log("AUTHENTICATED", isAuthenticated());
     productService.findPageRequest(queryParams.page, queryParams.name)
       .then(response => {
         const nextPage = response.data.content;

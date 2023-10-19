@@ -8,6 +8,11 @@ Going down to key concepts of ReactJS such as
 - Yarn
 - Vite
 - Axios
+- OAUTH2
+- Global Context
+- Forms
+- History
+- JWT
 ## _Table of contents_
 - [Overview](#overview)
 - [Screenshot](#screenshot)
