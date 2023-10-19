@@ -43,7 +43,12 @@ function App() {
               <Route path="product-details/:productId" element={<ProductDetails />}></Route>
               <Route path="cart" element={<Cart />}></Route>
               <Route path="login" element={<Login />}></Route>
-              <Route path="confirmation/:orderId" element={<Confirmation />}></Route>
+
+              <Route path="confirmation/:orderId" element={
+                <PrivateRoute>
+                  <Confirmation />
+                </PrivateRoute>}>
+              </Route>
             </Route>
             <Route path="*" element={<Navigate to="/" />}></Route>
             <Route path="/admin/" element={
