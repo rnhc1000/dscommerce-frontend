@@ -10,6 +10,7 @@ import Login from './routes/ClientHome/Login';
 import Admin from './routes/Admin';
 import AdminHome from './routes/Admin/AdminHome';
 import { history } from './utils/history';
+import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
   const [contextCartCount, setContextCartCount] = useState<number>(0)
@@ -27,11 +28,17 @@ function App() {
             <Route path="login" element={<Login />}></Route>
           </Route>
           <Route path="*" element={<Navigate to="/" />}></Route>
-          <Route path="/admin/" element={<Admin />}>
+          <Route path="/admin/" element={
+
+            <PrivateRoute>
+              <Admin />
+            </PrivateRoute>
+            
+          }>
             <Route index element={<AdminHome />}></Route>
           </Route>
         </Routes>
-      {/* </BrowserRouter> */}
+        {/* </BrowserRouter> */}
       </HistoryRouter>
     </ContextCartCount.Provider>
   )
