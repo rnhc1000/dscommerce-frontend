@@ -8,6 +8,11 @@ Going down to key concepts of ReactJS such as
 - Yarn
 - Vite
 - Axios
+- OAUTH2
+- Global Context
+- Forms
+- History
+- JWT
 ## _Table of contents_
 - [Overview](#overview)
 - [Screenshot](#screenshot)
@@ -53,13 +58,12 @@ The design is structured as shown:
 - public|
 
 ## _Screenshot_
-[![](./DSCommerce.png)]()
+[![](./dscommerce-frontEnd.png)]()
 ## _Links_
 - Live Site URL: [] 
 ## _Built with_
-| Git | ReactJS | Vite | Yarn | TS | JS | VS Code | Axios | ReactRouter |
-|----------|----------|----------|----------|----------|----------|----------| ----------| ----------|
- ![](https://ferreiras.dev.br/assets/images/icons/git-scm-icon.svg) | ![](https://ferreiras.dev.br/assets/images/icons/react.svg) | ![](https://ferreiras.dev.br/assets/images/icons/vite.svg) | ![](https://ferreiras.dev.br/assets/images/icons/yarn-title.svg) | ![](https://ferreiras.dev.br/assets/images/icons/ts-logo.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-javascript.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-visual-studio-code.svg) | ![](https://axios-http.com/assets/logo.svg) ![](https://ferreiras.dev.br/assets/images/icons/react-router-stacked-color-inverted.svg)
+
+ ![](https://ferreiras.dev.br/assets/images/icons/git-scm-icon.svg) | ![](https://ferreiras.dev.br/assets/images/icons/react.svg) | ![](https://ferreiras.dev.br/assets/images/icons/vite.svg) | ![](https://ferreiras.dev.br/assets/images/icons/yarn-title.svg) | ![](https://ferreiras.dev.br/assets/images/icons/ts-logo.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-javascript.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-visual-studio-code.svg) | ![](https://ferreiras.dev.br/assets/images/icons/axios-logo.svg)| ![](https://ferreiras.dev.br/assets/images/icons/react-router-stacked-color-inverted.svg) | ![](https://ferreiras.dev.br/assets/images/icons/oauth_logo_final.svg)
 
  ## _What I practiced_
 ```jsx
