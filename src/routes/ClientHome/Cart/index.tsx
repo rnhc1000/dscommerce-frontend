@@ -26,7 +26,7 @@ export default function Cart() {
     const { setContextCartCount } = useContext(ContextCartCount);
 
     const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
-    
+
     function handleClearClick() {
         cartService.clearCart();
         updateCart();
@@ -83,10 +83,13 @@ export default function Cart() {
                                     <div className="dsc-cart-total-container">
                                         <h3>R$ {cart.total.toFixed(2)}</h3>
                                     </div>
-                                </div><div className="dsc-btn-page-container">
+                                </div>
+                                <div className="dsc-btn-page-container">
+                                    <Link to="/confirmation">
                                     <div className="dsc-btn dsc-btn-blue">
                                         Finalizar pedido
                                     </div>
+                                    </Link>
                                     <Link to="/catalog">
                                         <div className="dsc-btn dsc-btn-white">
                                             Continuar comprando
