@@ -424,6 +424,10 @@ $grid-breakpoints: (
     margin-bottom: 20px;
 }
 
+
 .dsc-dialog-btn-container {
     width: 100%;
+    display: grid;
+    grid-template: 1fr 1fr;
+    grid-gap: 20px;
 }

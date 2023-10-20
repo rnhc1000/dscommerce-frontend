@@ -2,10 +2,10 @@
 import { AxiosRequestConfig } from 'axios';
 import { requestBackEnd } from '../utils/requests';
 
-export function findPageRequest(page: number, name: string, size = 12, sort="name") {
+export function findPageRequest(page: number, name: string, size = 12, sort = "name") {
     // return products;
 
-    const config : AxiosRequestConfig = {
+    const config: AxiosRequestConfig = {
         method: "GET",
         url: "/products",
         params: {
@@ -19,13 +19,22 @@ export function findPageRequest(page: number, name: string, size = 12, sort="nam
     return requestBackEnd(config);
 }
 
-export function findById(id: number)  {
+export function findById(id: number) {
     // return products.find(x => x.id === id);
-    return requestBackEnd({ url: `/products/${id}` }); 
+    return requestBackEnd({ url: `/products/${id}` });
     // return axios.get(`${BASE_URL}/products/${id}`)
 }
 
+export function deleteById(id: number) {
 
+    const config: AxiosRequestConfig = {
+        method: "DELETE",
+        url: `/products/${id}`,
+        withCredentials: true
+    }
+
+    return requestBackEnd(config);
+}
 
 // const products : ProductDTO[] = [
 //     {
