@@ -41,10 +41,11 @@ export default function Login() {
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        authService.loginRequest({
-            username: formData.username.value,
-            password: formData.password.value
-        })
+        authService.loginRequest(
+            forms.toValues(formData)
+            // username: formData.username.value,
+            // password: formData.password.value
+        )
             .then(response => {
                 authService.saveAccessToken(response.data.access_token);
                 console.log(response.data);
