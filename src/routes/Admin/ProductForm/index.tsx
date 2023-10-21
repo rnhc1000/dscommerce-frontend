@@ -1,10 +1,18 @@
 import './styles.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
+import * as productService from '../../../services/product-service';
 
 export default function ProductForm() {
+
+    const params =  useParams();
+
+    const isEditing: boolean = params.productId !== 'create';
+
+    console.log(isEditing);
+
 
     const [formData, setFormData] = useState<any>({
 
@@ -31,6 +39,17 @@ export default function ProductForm() {
         }
     });
 
+    useEffect(() => {
+        if (isEditing) {
+            productService.findById(Number(params.productId))
+            .then (response => {
+                // setFormData(response.data);
+                // console.log(response.data);
+                setFormData(forms.updateAll(formData, response.data))
+            })
+        }
+        console.log("Editar");
+      },[])
 
     function handleInputChange(event: any) {
         const value = event.target.value; // valor da caixa
@@ -58,7 +77,6 @@ export default function ProductForm() {
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
-
                             </div>
                             <div>
                                 <FormInput
