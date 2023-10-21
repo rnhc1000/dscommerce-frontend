@@ -68,6 +68,11 @@ export default function ProductListing() {
         setDialogConfirmationData({ ...dialogConfirmationData, id: productId, visible: true })
     }
 
+    function handleUpdateClick(productId: number) {
+        navigate(`/admin/products/${productId}`)
+    }
+
+
     function handleDialogConfirmationAnswer(answer: boolean, productId: number) {
 
         if (answer) {
@@ -129,7 +134,7 @@ export default function ProductListing() {
                                     <td><img className="dsc-product-listing-image" src={product.imgUrl} alt={product.name}></img></td>
                                     <td className="dsc-tb768">R$ {product.price.toFixed(2)}</td>
                                     <td className="dsc-txt-left">{product.name}</td>
-                                    <td><img className="dsc-product-listing-btn" src={editImg} alt="Editar"></img></td>
+                                    <td><img onClick={() => handleUpdateClick(product.id)} className="dsc-product-listing-btn" src={editImg} alt="Editar"></img></td>
                                     <td><img onClick={() => handleDeleteClick(product.id)} className="dsc-product-listing-btn" src={deleteImg} alt="Deletar"></img></td>
                                 </tr>
                             ))
