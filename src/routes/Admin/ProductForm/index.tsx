@@ -64,6 +64,10 @@ export default function ProductForm() {
         setFormData(dataValidated);
     }
 
+    function handleTurnDirty(name: string) {
+        const newFormData = forms.toDirty(formData, name);
+        setFormData(newFormData);
+    }
     return (
         <main>
             <section id="product-form-section" className="dsc-container">
@@ -74,6 +78,7 @@ export default function ProductForm() {
                             <div>
                                 <FormInput
                                     {...formData.name}
+                                    onTurnDirty={handleTurnDirty}
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
@@ -82,6 +87,7 @@ export default function ProductForm() {
                             <div>
                                 <FormInput
                                     {...formData.price}
+                                    onTurnDirty={handleTurnDirty}
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
@@ -90,6 +96,7 @@ export default function ProductForm() {
                             <div>
                                 <FormInput
                                     {...formData.imgUrl}
+                                    onTurnDirty={handleTurnDirty}
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />

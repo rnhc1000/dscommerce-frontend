@@ -32,3 +32,8 @@ export function validate(inputs: any, name: string) {
     const isInvalid = !inputs[name].validation(inputs[name].value)
     return { ...inputs, [name]: { ...inputs[name], invalid: isInvalid.toString() }}
 }
+
+export function toDirty(inputs: any, name: string) {
+
+    return { ...inputs, [name]:  { ...inputs[name], dirty: "true"}}
+}
