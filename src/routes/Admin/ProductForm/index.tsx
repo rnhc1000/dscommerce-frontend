@@ -4,15 +4,20 @@ import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as productService from '../../../services/product-service';
+import * as categoryService from '../../../services/category-service';
+import FormTextArea from '../../../components/FormTextArea';
+import { CategoryDTO } from '../../../models/categories';
+import FormSelect from '../../../components/FormSelect';
 
 export default function ProductForm() {
 
-    const params =  useParams();
+    const params = useParams();
 
     const isEditing: boolean = params.productId !== 'create';
 
-    console.log(isEditing);
+    // console.log(isEditing);
 
+    const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
     const [formData, setFormData] = useState<any>({
 
@@ -22,7 +27,7 @@ export default function ProductForm() {
             name: "name",
             type: "text",
             placeholder: "Nome",
-            validation: function(value: string) {
+            validation: function (value: string) {
                 // return value.length >= 3 && value.length <= 80
                 return /^.{3,80}$/.test(value);
             },
@@ -34,7 +39,7 @@ export default function ProductForm() {
             name: "price",
             type: "number",
             placeholder: "Preço",
-            validation: function(value: any) {
+            validation: function (value: any) {
                 return Number(value) > 0;
             },
             message: "Favor informar um valor positivo!"
@@ -45,20 +50,53 @@ export default function ProductForm() {
             name: "imgUrl",
             type: "text",
             placeholder: "Imagem",
+        },
+        description: {
+            value: "",
+            id: "description",
+            name: "description",
+            type: "text",
+            placeholder: "Descrição",
+            validation: function (value: string) {
+                // return value.length >= 3 && value.length <= 80
+                return /^.{10,}$/.test(value);
+            },
+            message: "A descrição deve ter pelo menos 10 caracteres"
+        },
+        categories: {
+            value: [],
+            id: "categories",
+            name: "categories",
+            placeholder: "Categorias",
+            validation: function (value: CategoryDTO[]) {
+
+                return value.length > 0;
+
+            },
+            message: "Escolha ao menos uma categoria!"
         }
     });
 
     useEffect(() => {
+        categoryService.findAllRequest()
+            .then(response => {
+                setCategories(response.data);
+            });
+    }, []);
+
+    useEffect(() => {
         if (isEditing) {
             productService.findById(Number(params.productId))
-            .then (response => {
-                // setFormData(response.data);
-                // console.log(response.data);
-                setFormData(forms.updateAll(formData, response.data))
-            })
+                .then(response => {
+                    // setFormData(response.data);
+                    // console.log(response.data);
+                    setFormData(forms.updateAll(formData, response.data))
+                })
+                console.log("Editar");
         }
-        console.log("Editar");
-      },[])
+        console.log("Adicionar Produto...")
+        
+    }, [])
 
     function handleInputChange(event: any) {
         const result = forms.updateAndValidate(formData, event.target.name, event.target.value);
@@ -74,6 +112,7 @@ export default function ProductForm() {
         setFormData(newFormData);
     }
 
+
     return (
         <main>
             <section id="product-form-section" className="dsc-container">
@@ -88,8 +127,8 @@ export default function ProductForm() {
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
+                                <div className="dsc-form-error">{formData.name.message}</div>
                             </div>
-                            <div className="dsc-form-error">{formData.name.message}</div>
                             <div>
                                 <FormInput
                                     {...formData.price}
@@ -97,8 +136,8 @@ export default function ProductForm() {
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
+                                <div className="dsc-form-error">{formData.price.message}</div>
                             </div>
-                            <div className="dsc-form-error">{formData.price.message}</div>
                             <div>
                                 <FormInput
                                     {...formData.imgUrl}
@@ -106,6 +145,23 @@ export default function ProductForm() {
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
+                            </div>
+                            <div>
+                                <FormSelect
+                                    {...formData.categories}
+                                    options={categories}
+                                    onChange={(obj: any) => {
+                                        const newFormData = forms.updateAndValidate(formData, "categories", obj);
+                                        console.log(formData.categories);
+                                        setFormData(newFormData);
+                                    }}
+                                    className="dsc-form-control"
+                                    onTurnDirty={handleTurnDirty}
+                                    isMulti
+                                    getOptionLabel={(obj: any) => obj.name}
+                                    getOptionValue={(obj: any) => String(obj.id)}
+                                />
+                                 <div className="dsc-form-error">{formData.categories.message}</div>
                             </div>
                             {/* <div>
                                 <select className="dsc-form-control dsc-select" required>
@@ -115,7 +171,13 @@ export default function ProductForm() {
                                 </select>
                             </div> */}
                             <div>
-                                {/* <textarea className="dsc-form-control dsc-textarea" placeholder="Descrição"></textarea> */}
+                                <FormTextArea
+                                    {...formData.description}
+                                    onTurnDirty={handleTurnDirty}
+                                    className="dsc-form-control dsc-text-area"
+                                    onChange={handleInputChange}
+                                />
+                                <div className="dsc-form-error">{formData.description.message}</div>
                             </div>
                         </div>
 

@@ -269,6 +269,12 @@ a:hover {
 }
 
 
+.dsc-text-area {
+    resize: none;
+    height: 128px;
+    padding-top: 10px;
+}
+
 .dsc-login-form-button {
     width: 100%;
 }
