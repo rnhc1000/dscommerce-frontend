@@ -120,7 +120,7 @@ export default function ProductForm() {
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
             console.log("erro......")
-            // return;
+            return;
         }
 
         const requestBody = forms.toValues(formData);
@@ -135,6 +135,11 @@ export default function ProductForm() {
 
         request.then(() => {
             navigate("/admin/products")
+        })
+        .catch(error => {
+            const newInputs = forms.setBackEndErrors(formData,error.response.data.errors);
+            setFormData(newInputs);
+            console.log(error.response.data.errors);
         })
 
     }
