@@ -1,6 +1,7 @@
 // import { ProductDTO } from "../models/product";
 import { AxiosRequestConfig } from 'axios';
 import { requestBackEnd } from '../utils/requests';
+import { ProductDTO } from '../models/product';
 
 export function findPageRequest(page: number, name: string, size = 12, sort = "name") {
     // return products;
@@ -34,6 +35,34 @@ export function deleteById(id: number) {
     }
 
     return requestBackEnd(config);
+}
+
+
+export function updateRequest (obj: ProductDTO)  {
+
+    const config: AxiosRequestConfig = {
+        method: "PUT",
+        url: `/products/${obj.id}`,
+        withCredentials: true,
+        data: obj
+    }
+
+    return requestBackEnd(config);
+
+}
+
+
+export function addRequest (obj: ProductDTO)  {
+
+    const config: AxiosRequestConfig = {
+        method: "POST",
+        url: "/products",
+        withCredentials: true,
+        data: obj
+    }
+    
+    return requestBackEnd(config);
+
 }
 
 // const products : ProductDTO[] = [

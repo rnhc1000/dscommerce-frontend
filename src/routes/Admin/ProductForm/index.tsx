@@ -1,5 +1,5 @@
 import './styles.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
@@ -19,6 +19,8 @@ export default function ProductForm() {
     // console.log(isEditing);
 
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState<any>({
 
@@ -93,10 +95,10 @@ export default function ProductForm() {
                     // console.log(response.data);
                     setFormData(forms.updateAll(formData, response.data))
                 })
-                console.log("Editar");
+            console.log("Editar");
         }
         console.log("Adicionar Produto...")
-        
+
     }, [])
 
     function handleInputChange(event: any) {
@@ -113,13 +115,33 @@ export default function ProductForm() {
         setFormData(newFormData);
     }
 
-    function handleSubmit(event: any) { 
+    function handleSubmit(event: any) {
         const formDataValidated = forms.dirtyAndValidateAll(formData);
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
-            return false;
+            console.log("erro......")
+            return;
         }
-      
+
+        const requestBody = forms.toValues(formData);
+
+        if (isEditing) {
+            requestBody.id = params.productId;
+        }
+
+        const request = isEditing
+            ? productService.updateRequest(requestBody)
+            : productService.addRequest(requestBody);
+
+        request.then(() => {
+            navigate("/admin/products")
+        })
+        .catch(error => {
+            const newInputs = forms.setBackEndErrors(formData,error.response.data.errors);
+            setFormData(newInputs);
+            console.log(error.response.data.errors);
+        })
+
     }
 
     return (
@@ -171,7 +193,7 @@ export default function ProductForm() {
                                     getOptionLabel={(obj: any) => obj.name}
                                     getOptionValue={(obj: any) => String(obj.id)}
                                 />
-                                 <div className="dsc-form-error">{formData.categories.message}</div>
+                                <div className="dsc-form-error">{formData.categories.message}</div>
                             </div>
                             {/* <div>
                                 <select className="dsc-form-control dsc-select" required>
