@@ -59,11 +59,25 @@ export default function Login() {
         // loginRequest(formData)
     }
 
+    // function handleInputChange(event: any) {
+    //     const value = event.target.value; // valor da caixa
+    //     const name = event.target.name; // nome da caixa
+    //     // setFormData({ ...formData, [name]: { ...formData[name], value: value } });
+    //     setFormData(forms.update(formData, name, value))
+    // }
+
     function handleInputChange(event: any) {
-        const value = event.target.value; // valor da caixa
-        const name = event.target.name; // nome da caixa
-        // setFormData({ ...formData, [name]: { ...formData[name], value: value } });
-        setFormData(forms.update(formData, name, value))
+        const result = forms.updateAndValidate(formData, event.target.name, event.target.value);
+        // const dataUpdated = forms.update(formData, event.target.name, event.target.value);
+        // const dataValidated = forms.validate(dataUpdated, event.target.name);
+        // const value = event.target.value; // valor da caixa
+        // const name = event.target.name; // nome da caixa
+        setFormData(result);
+    }
+
+    function handleTurnDirty(name: string) {
+        const newFormData = forms.dirtyAndValidate(formData, name);
+        setFormData(newFormData);
     }
 
     return (
@@ -82,7 +96,7 @@ export default function Login() {
                                     // className="dsc-form-control"
                                     // type="text"
                                     // placeholder="Email"
-                                  
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
                                     />
                                     <div className="dsc-form-error"></div>
@@ -95,7 +109,7 @@ export default function Login() {
                                     // className="dsc-form-control"
                                     // type="password"
                                     // placeholder="Senha"
-                                    
+                                    onTurnDirty={handleTurnDirty}
                                     onChange={handleInputChange}
 />
                                 </div>

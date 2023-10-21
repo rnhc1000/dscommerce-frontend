@@ -56,18 +56,19 @@ export default function ProductForm() {
       },[])
 
     function handleInputChange(event: any) {
-
-        const dataUpdated = forms.update(formData, event.target.name, event.target.value);
-        const dataValidated = forms.validate(dataUpdated, event.target.name);
+        const result = forms.updateAndValidate(formData, event.target.name, event.target.value);
+        // const dataUpdated = forms.update(formData, event.target.name, event.target.value);
+        // const dataValidated = forms.validate(dataUpdated, event.target.name);
         // const value = event.target.value; // valor da caixa
         // const name = event.target.name; // nome da caixa
-        setFormData(dataValidated);
+        setFormData(result);
     }
 
     function handleTurnDirty(name: string) {
-        const newFormData = forms.toDirty(formData, name);
+        const newFormData = forms.dirtyAndValidate(formData, name);
         setFormData(newFormData);
     }
+
     return (
         <main>
             <section id="product-form-section" className="dsc-container">
