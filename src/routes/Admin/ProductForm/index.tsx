@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import FormInput from '../../../components/FormInput';
 import * as forms from '../../../utils/forms';
 import * as productService from '../../../services/product-service';
+import FormTextArea from '../../../components/FormTextArea';
 
 export default function ProductForm() {
 
-    const params =  useParams();
+    const params = useParams();
 
     const isEditing: boolean = params.productId !== 'create';
 
@@ -22,7 +23,7 @@ export default function ProductForm() {
             name: "name",
             type: "text",
             placeholder: "Nome",
-            validation: function(value: string) {
+            validation: function (value: string) {
                 // return value.length >= 3 && value.length <= 80
                 return /^.{3,80}$/.test(value);
             },
@@ -34,7 +35,7 @@ export default function ProductForm() {
             name: "price",
             type: "number",
             placeholder: "Preço",
-            validation: function(value: any) {
+            validation: function (value: any) {
                 return Number(value) > 0;
             },
             message: "Favor informar um valor positivo!"
@@ -45,20 +46,33 @@ export default function ProductForm() {
             name: "imgUrl",
             type: "text",
             placeholder: "Imagem",
+        },
+        description: {
+            value: "",
+            id: "description",
+            name: "description",
+            type: "text",
+            placeholder: "Descrição",
+            validation: function (value: string) {
+                // return value.length >= 3 && value.length <= 80
+                return /^.{10,}$/.test(value);
+            },
+            message: "A descrição deve ter pelo menos 10 caracteres"
+
         }
     });
 
     useEffect(() => {
         if (isEditing) {
             productService.findById(Number(params.productId))
-            .then (response => {
-                // setFormData(response.data);
-                // console.log(response.data);
-                setFormData(forms.updateAll(formData, response.data))
-            })
+                .then(response => {
+                    // setFormData(response.data);
+                    // console.log(response.data);
+                    setFormData(forms.updateAll(formData, response.data))
+                })
         }
         console.log("Editar");
-      },[])
+    }, [])
 
     function handleInputChange(event: any) {
         const result = forms.updateAndValidate(formData, event.target.name, event.target.value);
@@ -88,8 +102,8 @@ export default function ProductForm() {
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
+                                <div className="dsc-form-error">{formData.name.message}</div>
                             </div>
-                            <div className="dsc-form-error">{formData.name.message}</div>
                             <div>
                                 <FormInput
                                     {...formData.price}
@@ -97,8 +111,8 @@ export default function ProductForm() {
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
+                                <div className="dsc-form-error">{formData.price.message}</div>
                             </div>
-                            <div className="dsc-form-error">{formData.price.message}</div>
                             <div>
                                 <FormInput
                                     {...formData.imgUrl}
@@ -106,6 +120,15 @@ export default function ProductForm() {
                                     className="dsc-form-control"
                                     onChange={handleInputChange}
                                 />
+                            </div>
+                            <div>
+                                <FormTextArea
+                                    {...formData.description}
+                                    onTurnDirty={handleTurnDirty}
+                                    className="dsc-form-control dsc-text-area"
+                                    onChange={handleInputChange}
+                                />
+                                <div className="dsc-form-error">{formData.description.message}</div>
                             </div>
                             {/* <div>
                                 <select className="dsc-form-control dsc-select" required>
