@@ -275,6 +275,12 @@ a:hover {
     padding-top: 10px;
 }
 
+
+.dsc-form-select-container {
+    padding: unset; 
+    height: unset;
+}
+
 .dsc-login-form-button {
     width: 100%;
 }
@@ -284,7 +290,7 @@ a:hover {
         font-size: 24px;
     }
 }
-
+/* 
 .dsc-select:invalid {
     color: var(--dsc-color-font-placeholder);
 
@@ -296,7 +302,7 @@ a:hover {
 
 .dsc select option {
     color: var(--dsc-color-font-primary);
-}
+} */
 
 .dsc-table {
 
