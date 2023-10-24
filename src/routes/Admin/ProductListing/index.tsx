@@ -1,4 +1,5 @@
 import './styles.css';
+
 import editImg from '../../../assets/edit.svg';
 import deleteImg from '../../../assets/delete.svg';
 import { useEffect, useState } from 'react';
@@ -19,19 +20,25 @@ type QueryParams = {
 export default function ProductListing() {
 
     const [dialogInfoData, setDialogInfoData] = useState({
+
         visible: false,
         message: "Operação com sucesso"
+        
     });
 
     const [dialogConfirmationData, setDialogConfirmationData] = useState({
+
         id: 0,
         visible: false,
         message: "Tem certeza?"
+
     });
 
     const [queryParams, setQueryParams] = useState<QueryParams>({
+
         page: 0,
         name: ""
+
     });
 
     const [isLastPage, setIsLastPage] = useState(false);
@@ -48,11 +55,15 @@ export default function ProductListing() {
                 setProducts(products.concat(nextPage));
                 setIsLastPage(response.data.last);
             });
-    }, [queryParams]);
+
+        }, [queryParams]
+    );
 
     function handleSearch(searchText: string) {
+
         setProducts([]);
         setQueryParams({ ...queryParams, page: 0, name: searchText });
+
     }
 
     function handlePageClick() {
@@ -60,16 +71,22 @@ export default function ProductListing() {
     }
 
     function handleDialogInfoClose() {
-        setDialogInfoData({ ...dialogInfoData, visible: false })
+
+        setDialogInfoData({ ...dialogInfoData, visible: false });
+
     }
 
 
     function handleDeleteClick(productId: number) {
-        setDialogConfirmationData({ ...dialogConfirmationData, id: productId, visible: true })
+
+        setDialogConfirmationData({ ...dialogConfirmationData, id: productId, visible: true });
+
     }
 
     function handleUpdateClick(productId: number) {
-        navigate(`/admin/products/${productId}`)
+
+        navigate(`/admin/products/${productId}`);
+
     }
 
 
@@ -91,18 +108,18 @@ export default function ProductListing() {
 
                 })
         }
-        console.log(answer);
-        setDialogConfirmationData({ ...dialogConfirmationData, visible: false })
+        setDialogConfirmationData({ ...dialogConfirmationData, visible: false });
+
     }
 
     function handleNewProductClick() {
-
 
         navigate("/admin/products/create")
 
     }
 
     return (
+
         <main>
             <section id="product-listing-section" className="dsc-container">
                 <h2 className="dsc-section-title dsc-mb20">Cadastro de produtos</h2>
@@ -164,5 +181,7 @@ export default function ProductListing() {
                 />
             }
         </main>
+
     );
+
 }

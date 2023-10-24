@@ -11,4 +11,5 @@ export default function ButtonBlue({ text }: Props) {
             { text }
         </div>
     );
+    
 }

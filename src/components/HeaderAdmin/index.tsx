@@ -1,25 +1,11 @@
 import './styles.css';
+
 import homeSvg from '../../assets/home.svg';
 import productImg from '../../assets/products.svg';
-// import { useEffect, useState } from 'react';
-// import { userDTO } from '../../models/user';
-// import * as userService from '../../services/user-service';
 import LoggedUser from '../LoggedUser';
 import { NavLink } from 'react-router-dom';
 
 export default function HeaderAdmin() {
-
-    // const[user, setUser] = useState<userDTO>();
-
-    // useEffect(() => {
-    //     userService.findMe()
-    //     .then(response => {
-    //         setUser(response.data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     })
-    // }, [])
 
     return (
         <>
@@ -46,5 +32,7 @@ export default function HeaderAdmin() {
                 </nav>
             </header>
         </>
+
     );
+
 }

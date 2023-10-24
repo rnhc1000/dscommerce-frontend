@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Navigate, Route, Routes, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { Navigate, Route, Routes, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import Catalog from './routes/ClientHome/Catalog';
 import ProductDetails from './routes/ClientHome/ProductDetails';
 import ClientHome from './routes/ClientHome';
@@ -36,9 +36,9 @@ function App() {
   return (
     <ContextToken.Provider value={{ contextTokenPayload, setContextTokenPayload }}>
       <ContextCartCount.Provider value={{ contextCartCount, setContextCartCount }} >
-        {/* <BrowserRouter> */}
         <HistoryRouter history={history}>
           <Routes>
+
             <Route path="/" element={<ClientHome />} >
 
               <Route index element={<Catalog />}></Route>
@@ -48,10 +48,11 @@ function App() {
               <Route path="login" element={<Login />}></Route>
 
               <Route path="confirmation/:orderId" element={
-                
+
                 <PrivateRoute>
                   <Confirmation />
                 </PrivateRoute>}>
+
               </Route>
 
             </Route>
@@ -67,9 +68,10 @@ function App() {
               <Route path="products/:productId" element={<ProductForm />}></Route>
 
             </Route>
+
             <Route path="*" element={<Navigate to="/" />}></Route>
+            
           </Routes>
-          {/* </BrowserRouter> */}
         </HistoryRouter>
       </ContextCartCount.Provider>
     </ContextToken.Provider>

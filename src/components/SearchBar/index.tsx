@@ -1,8 +1,11 @@
-import { useState } from 'react';
 import './styles.css';
+
+import { useState } from 'react';
+
 type Props = {
     onSearch: Function;
 }
+
 export default function SearchBar({ onSearch }: Props) {
 
     const [text, setText] = useState("");
@@ -22,6 +25,7 @@ export default function SearchBar({ onSearch }: Props) {
     }
 
     return (
+
         <form className="dsc-search-bar" onSubmit={handleSubmit}>
             <button type="submit">🔎︎</button>
             <input
@@ -35,4 +39,5 @@ export default function SearchBar({ onSearch }: Props) {
         </form>
 
     );
+    
 }

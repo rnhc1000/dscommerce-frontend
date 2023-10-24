@@ -1,4 +1,5 @@
 export class OrderDTO {
+
     id?: number;
     items: OrderItemDTO[] = [];
     get total(): number {
@@ -8,9 +9,11 @@ export class OrderDTO {
         })
         return sum;
     }
+
 }
 
 export class OrderItemDTO {
+
     constructor(
         public productId: number,
         public quantity: number,
@@ -21,4 +24,5 @@ export class OrderItemDTO {
     get subTotal(): number {
         return this.price * this.quantity;
     }
+    
 }

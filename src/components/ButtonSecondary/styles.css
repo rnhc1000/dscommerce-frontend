@@ -7,13 +7,12 @@
     justify-content: center;
     align-items: center;
     background-color: var(--dsc-color-btn-primary);
-    color: #FFF;
+    color: var(--dsc-color-font-tertiary);
     width: 100%;
-
 }
 
 .dsc-btn-white {
     background-color: var(--dsc-color-btn-inverse);
-    color: #3483FA;
-    border: 1px solid #3483FA;
+    color: var(--dsc-color-btn-primary);
+    border: 1px solid var(--dsc-color-btn-primary);
 }

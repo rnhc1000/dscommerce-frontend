@@ -2,7 +2,6 @@ import { AxiosRequestConfig } from "axios";
 import { requestBackEnd } from "../utils/requests";
 
 export function findAllRequest() {
-    // return products;
 
     const config: AxiosRequestConfig = {
         method: "GET",
@@ -10,4 +9,5 @@ export function findAllRequest() {
         }
 
     return requestBackEnd(config);
+    
 }

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { BASE_URL } from "./system";
 import * as authService from '../services/auth-service';
-import { history }  from './history';
+import { history } from './history';
 
 export function requestBackEnd(config: AxiosRequestConfig) {
 
@@ -31,8 +31,8 @@ axios.interceptors.request.use(
 // RESPONSE INTERCEPTOR
 axios.interceptors.response.use(
     function (response) {
-    // DO SOMETHING WITH RESPONSE DATA IF STATUS IS 2xx
-    return response;
+        // DO SOMETHING WITH RESPONSE DATA IF STATUS IS 2xx
+        return response;
     },
     function (error) {
         if (error.response.status === 401) {
@@ -45,7 +45,7 @@ axios.interceptors.response.use(
             console.log("403");
         }
 
-    // DO SOMETHING WITH RESPONSE ERROR
-    return Promise.reject(error);
+        // DO SOMETHING WITH RESPONSE ERROR
+        return Promise.reject(error);
     }
-    );
+);

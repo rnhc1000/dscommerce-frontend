@@ -9,19 +9,21 @@ import jwtDecode from "jwt-decode";
 export function loginRequest(loginData: CredentialsDTO) {
 
     const headers = {
+
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: "Basic " + window.btoa(CLIENT_ID + ":" + CLIENT_SECRET)
+
     }
 
     const requestBody = QueryString.stringify({ ...loginData, grant_type: "password" });
-    console.log(requestBody)
-
 
     const config: AxiosRequestConfig = {
+
         method: "POST",
         url: "/oauth/token",
         data: requestBody,
         headers: headers
+        
     }
 
     return requestBackEnd(config);
@@ -29,28 +31,38 @@ export function loginRequest(loginData: CredentialsDTO) {
 }
 
 export function logout() {
+
     accessTokenRepository.remove();
+
 }
 
 export function saveAccessToken(token: string) {
+
     accessTokenRepository.save(token);
+
 }
 
 export function getAccessToken() {
+
     return accessTokenRepository.get();
+
 }
 
 export function getAccessTokenPayload(): AccessTokenPayloadDTO | undefined {
+
     try {
+
         const token = accessTokenRepository.get();
         return token == null
             ? undefined
             : (jwtDecode(token) as AccessTokenPayloadDTO);
+
     } catch (error) {
+
         return undefined;
+
     }
 }
-
 
 /**
  * 
@@ -61,35 +73,33 @@ export function getAccessTokenPayload(): AccessTokenPayloadDTO | undefined {
  * between now() and exp;
  * 
  */
+
 export function isAuthenticated(): boolean {
     const tokenPayload = getAccessTokenPayload();
 
-    if (tokenPayload && tokenPayload.exp * 1000 > Date.now()) {
-        return true;
-    } else {
-        return false;
-    }
-    // return tokenPayload && 
-    //     tokenPayload.exp * 1000 > Date.now() 
-    //     ? true 
-    //     : false;
+    return !!(tokenPayload && 
+        tokenPayload.exp * 1000 > Date.now());
 }
 
 export function hasAnyRoles(roles: RoleEnum[]): boolean {
     
     if (roles.length === 0) {
+
         return true;
+
     }
 
     const tokenPayload = getAccessTokenPayload();
 
     if (tokenPayload !== undefined) {
+
         for (const element of roles) {
             if (tokenPayload.authorities.includes(element)) {
                 return true;
             }
         }
-        //return roles.some(role => tokenData.authorities.includes(role));
     }
+
     return false;
+
 }

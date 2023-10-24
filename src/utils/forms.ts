@@ -1,4 +1,3 @@
-import { renderToStaticNodeStream } from "react-dom/server";
 
 export function update(inputs: any, name: string, newValue: any) {
 
@@ -94,7 +93,6 @@ export function validateAll(inputs: any) {
 
     return newInputs;
 }
-
 
 export function dirtyAndValidateAll(inputs: any) {
 

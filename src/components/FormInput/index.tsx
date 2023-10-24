@@ -1,11 +1,11 @@
 export default function FormInput(props: any) {
 
-    const { 
-        validation, 
-        invalid = "false", 
-        dirty = "false", 
-        onTurnDirty, 
-        ...inputProps 
+    const {
+        validation,
+        invalid = "false",
+        dirty = "false",
+        onTurnDirty,
+        ...inputProps
     } = props;
 
     function handleBlur() {
@@ -13,12 +13,14 @@ export default function FormInput(props: any) {
     }
 
     return (
-        <input 
-        { ...inputProps } 
-        onBlur={handleBlur}
-        data-invalid={invalid} 
-        data-dirty={dirty}
+
+        <input
+            {...inputProps}
+            onBlur={handleBlur}
+            data-invalid={invalid}
+            data-dirty={dirty}
         />
+        
     );
 
 }

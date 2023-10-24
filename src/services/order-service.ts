@@ -8,7 +8,9 @@ export function findByIdRequest(id: number) {
         url: `/orders/${id}`,
         withCredentials: true
     }
-    return requestBackEnd(config)
+
+    return requestBackEnd(config);
+
 }
 
 export function placeOrderRequest(cart: OrderDTO) {
@@ -19,5 +21,7 @@ export function placeOrderRequest(cart: OrderDTO) {
         withCredentials: true,
         data: cart
     }
+
     return requestBackEnd(config);
+    
 }

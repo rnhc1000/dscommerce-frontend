@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import './styles.css';
+
+import { Link } from 'react-router-dom';
 import CartIcon from '../CartIcon';
 import AdminIcon from '../../assets/admin.svg';
 import * as authService from '../../services/auth-service';
@@ -10,7 +11,9 @@ import LoggedUser from '../LoggedUser';
 export default function HeaderClient() {
 
     const { contextTokenPayload } = useContext(ContextToken);
+
     return (
+
         <header className="dsc-header-client">
             <nav className="dsc-container">
                 <Link to={'/'}>
@@ -37,5 +40,7 @@ export default function HeaderClient() {
                 </div>
             </nav>
         </header>
+
     );
+    
 }

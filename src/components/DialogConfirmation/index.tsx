@@ -1,4 +1,3 @@
-
 import ButtonBlue from "../ButtonPrimary";
 import ButtonWhite from "../ButtonSecondary";
 type Props = {
@@ -10,6 +9,7 @@ type Props = {
 export default function DialogConfirmation({ id, message,  onDialogAnswer }: Props) {
 
     return (
+
         <div className="dsc-dialog-background" onClick={() => onDialogAnswer(false, id)}>
             <div className="dsc-dialog-box" onClick={(event) => event.stopPropagation()}>
                 <h2>{message}</h2>
@@ -23,5 +23,7 @@ export default function DialogConfirmation({ id, message,  onDialogAnswer }: Pro
                 </div>
             </div>
         </div>
+
     )
+
 }

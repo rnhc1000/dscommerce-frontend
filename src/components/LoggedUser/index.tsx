@@ -25,6 +25,6 @@ export default function LoggedUser() {
                 Entrar
             </Link>
 
-
     );
+    
 }
