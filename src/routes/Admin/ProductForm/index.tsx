@@ -17,8 +17,6 @@ export default function ProductForm() {
 
     const isEditing: boolean = params.productId !== 'create';
 
-    // console.log(isEditing);
-
     const [categories, setCategories] = useState<CategoryDTO[]>([]);
 
     const navigate = useNavigate();
@@ -43,7 +41,7 @@ export default function ProductForm() {
             name: "price",
             type: "number",
             placeholder: "Preço",
-            validation: function (value: any) {
+            validation: function (value: number) {
                 return Number(value) > 0;
             },
             message: "Favor informar um valor positivo!"
@@ -92,22 +90,14 @@ export default function ProductForm() {
         if (isEditing) {
             productService.findById(Number(params.productId))
                 .then(response => {
-                    // setFormData(response.data);
-                    // console.log(response.data);
                     setFormData(forms.updateAll(formData, response.data))
                 })
-            console.log("Editar");
         }
-        console.log("Adicionar Produto...")
 
     }, [])
 
     function handleInputChange(event: any) {
         const result = forms.updateAndValidate(formData, event.target.name, event.target.value);
-        // const dataUpdated = forms.update(formData, event.target.name, event.target.value);
-        // const dataValidated = forms.validate(dataUpdated, event.target.name);
-        // const value = event.target.value; // valor da caixa
-        // const name = event.target.name; // nome da caixa
         setFormData(result);
     }
 
@@ -117,10 +107,12 @@ export default function ProductForm() {
     }
 
     function handleSubmit(event: any) {
+
+        event.preventDefault();
+
         const formDataValidated = forms.dirtyAndValidateAll(formData);
         if (forms.hasAnyInvalid(formDataValidated)) {
             setFormData(formDataValidated);
-            console.log("erro......")
             return;
         }
 
@@ -140,7 +132,6 @@ export default function ProductForm() {
         .catch(error => {
             const newInputs = forms.setBackEndErrors(formData,error.response.data.errors);
             setFormData(newInputs);
-            console.log(error.response.data.errors);
         })
 
     }
@@ -186,7 +177,6 @@ export default function ProductForm() {
                                     options={categories}
                                     onChange={(obj: any) => {
                                         const newFormData = forms.updateAndValidate(formData, "categories", obj);
-                                        console.log(formData.categories);
                                         setFormData(newFormData);
                                     }}
                                     onTurnDirty={handleTurnDirty}

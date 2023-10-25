@@ -76,8 +76,6 @@ nav h1 {
     font-size: 16px;
 }
 
-
-
 a,
 a:hover {
     text-decoration: none;
@@ -133,7 +131,6 @@ a:hover {
 
 .dsc-logged-user p {
     font-size: 12px;
-
 }
 
 .dsc-container {
@@ -207,11 +204,11 @@ a:hover {
 }
 
 
-
 .dsc-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 40px 20px;
 }
 
@@ -241,7 +238,7 @@ a:hover {
     padding: 20px 20px;
     border-radius: 4px;
     border: 1px solid var(--dsc-color-card-border);
-    margin: 20px;
+    margin: 20px auto;
     align-content: center;
 }
 
@@ -256,7 +253,6 @@ a:hover {
 .dsc-form-control input:focus {
     outline: none;
 }
-
 
 .dsc-form-control::placeholder {
     color: var(--dsc-color-font-placeholder);
@@ -329,8 +325,6 @@ a:hover {
     font-size: 14px;
 }
 
-
-
 .dsc-table tbody {
     background-color: var(--dsc-color-card-bg);
     color: var(--dsc-color-font-primary);
@@ -341,7 +335,6 @@ a:hover {
 .dsc-table tbody tr {
     border-top: 1px solid var(--dsc-color-card-border);
     height: 71px;
-    /* text-align: center; */
 }
 
 .dsc-text-left {
@@ -393,25 +386,11 @@ a:hover {
 
 }
 
-
-
 .dsc-table td:last-child {
     border-top-right-radius: 10px;
     padding-right: 10px
 }
 
-
-
-/**
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
-*/
 @media (min-width: 576) {
     .dsc-section-title {
         text-align: left;
@@ -450,7 +429,6 @@ $grid-breakpoints: (
     color: var(--dsc-color-font-primary);
     margin-bottom: 20px;
 }
-
 
 .dsc-dialog-btn-container {
     width: 100%;

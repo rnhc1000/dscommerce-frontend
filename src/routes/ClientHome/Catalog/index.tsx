@@ -5,8 +5,6 @@ import LoadBar from '../../../components/LoadBar';
 import * as productService from '../../../services/product-service';
 import { useEffect, useState } from 'react';
 import { ProductDTO } from '../../../models/product';
-import { hasAnyRoles, isAuthenticated } from '../../../services/auth-service';
-// import axios from 'axios';
 
 
 type QueryParams = {
@@ -14,12 +12,6 @@ type QueryParams = {
   name: string;
 }
 export default function Catalog() {
-
-  /**
-   * 1. useState criado como uma lista de produtos
-   * e inicializado com um lista vazia[]
-   */
-
 
   const [isLastPage, setIsLastPage] = useState(false);
   const [products, setProducts] = useState<ProductDTO[]>([]);
@@ -29,15 +21,8 @@ export default function Catalog() {
     name: ""
   });
 
-  /**
-   * Ao montar o componente buscar os primeiros elementos
-   * useEffect(() => {}, []) argumento função e lista de dependencias
-   * Se productName mudar a função findPageRequest é executada
-   */
-
   useEffect(() => {
-    console.log("AUTHENTICATED", isAuthenticated());
-    console.log("TESTE", hasAnyRoles(['ROLE_CLIENT']));
+
     productService.findPageRequest(queryParams.page, queryParams.name)
       .then(response => {
         const nextPage = response.data.content;
@@ -63,9 +48,7 @@ export default function Catalog() {
 
           <div className="dsc-catalog-cards dsc-mb20 dsc-mt20">
             {
-              // productService.findAll().map(product => <CatalogCard key={product.id} product={product} />)
               products.map(product => <CatalogCard key={product.id} product={product} />)
-
             }
 
           </div>

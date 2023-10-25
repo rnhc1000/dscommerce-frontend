@@ -37,12 +37,10 @@ axios.interceptors.response.use(
     function (error) {
         if (error.response.status === 401) {
             history.push("/login");
-            console.log("401");
         }
 
         if (error.response.status === 403) {
             history.push("/catalog")
-            console.log("403");
         }
 
         // DO SOMETHING WITH RESPONSE ERROR

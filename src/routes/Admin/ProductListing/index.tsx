@@ -23,7 +23,7 @@ export default function ProductListing() {
 
         visible: false,
         message: "Operação com sucesso"
-        
+
     });
 
     const [dialogConfirmationData, setDialogConfirmationData] = useState({
@@ -108,6 +108,7 @@ export default function ProductListing() {
 
                 })
         }
+
         setDialogConfirmationData({ ...dialogConfirmationData, visible: false });
 
     }
@@ -128,12 +129,13 @@ export default function ProductListing() {
                     <div onClick={handleNewProductClick}>
                         <ButtonWhite text="Novo" />
                     </div>
-                    {/* <div className="dsc-btn dsc-btn-white">Novo</div> */}
                 </div>
+
                 <SearchBar onSearch={handleSearch} />
 
                 <table className="dsc-table dsc-mb20 dsc-mt20">
                     <thead>
+                        
                         <tr>
                             <th className="dsc-tb576">ID</th>
                             <th></th>
@@ -142,6 +144,7 @@ export default function ProductListing() {
                             <th></th>
                             <th></th>
                         </tr>
+                        
                     </thead>
                     <tbody>
                         {

@@ -1,4 +1,3 @@
-
 export function update(inputs: any, name: string, newValue: any) {
 
     return { ...inputs, [name]: { ...inputs[name], value: newValue } };
@@ -56,9 +55,8 @@ export function updateAndValidate(inputs: any, name: string, newValue: any) {
 
 export function dirtyAndValidate(inputs: any, name: string) {
 
-    const dataUpdated = toDirty(inputs, name);
-    const dataDirty = validate(dataUpdated, name);
-    return dataDirty;
+    const dataDirty = toDirty(inputs, name);
+    return validate(dataDirty, name);
 
 }
 
@@ -72,9 +70,11 @@ export function toDirtyAll(inputs: any) {
     }
 
     return newInputs;
+
 }
 
 export function validateAll(inputs: any) {
+
     const newInputs: any = {};
 
     for (const name in inputs) {
@@ -92,30 +92,37 @@ export function validateAll(inputs: any) {
     }
 
     return newInputs;
+
 }
 
 export function dirtyAndValidateAll(inputs: any) {
 
     return validateAll(toDirtyAll(inputs));
+
 }
 
 export function hasAnyInvalid(inputs: any) {
 
     for (const name in inputs) {
+
         if (inputs[name].dirty === "true" && inputs[name].invalid === "true") {
             return true;
         }
     }
+
     return false;
+
 }
 
 export function setBackEndErrors(inputs: any, errors: any[]) {
+
     const newInputs = { ...inputs };
     errors.forEach(item => {
         newInputs[item.fieldName].message = item.message;
         newInputs[item.fieldName].dirty = "true";
         newInputs[item.fieldName].invalid = "true";
     })
+
     return newInputs;
 
 }
