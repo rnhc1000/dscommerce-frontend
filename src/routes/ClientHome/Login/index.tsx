@@ -1,6 +1,5 @@
 import './styles.css';
 import { useContext, useState } from 'react';
-import { CredentialsDTO } from '../../../models/auth';
 import * as authService from '../../../services/auth-service';
 import { useNavigate } from 'react-router-dom';
 import { ContextToken } from '../../../utils/context-token';
@@ -9,10 +8,6 @@ import * as forms from '../../../utils/forms';
 
 
 export default function Login() {
-    // const [formData, setFormData] = useState<CredentialsDTO>({
-    //     username: "",
-    //     password: ""
-    // });
 
     const [formData, setFormData] = useState<any>({
         username: {
@@ -60,7 +55,7 @@ export default function Login() {
                 setContextTokenPayload(authService.getAccessTokenPayload());
                 navigate("/cart");
             })
-            .catch(error => {
+            .catch(() => {
                 setSubmitResponseFail(true);
             })
     }

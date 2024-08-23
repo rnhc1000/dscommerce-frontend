@@ -8,8 +8,7 @@ import { NavLink } from 'react-router-dom';
 export default function HeaderAdmin() {
 
     return (
-        <>
-            <header className="dsc-header-admin">
+        <header className="dsc-header-admin">
                 <nav className="dsc-container">
                     <h1>DSC Admin</h1>
                     <div className="dsc-nav-bar-right">
@@ -31,7 +30,6 @@ export default function HeaderAdmin() {
                     </div>
                 </nav>
             </header>
-        </>
 
     );
 
