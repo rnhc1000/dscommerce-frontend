@@ -71,8 +71,7 @@ export default function Login() {
     }
 
     return (
-        <>
-            <main>
+        <main>
                 <section id="login-section" className="dsc-container">
                     <div className="dsc-login-form-container">
 
@@ -115,7 +114,5 @@ export default function Login() {
                     </div>
                 </section>
             </main>
-
-        </>
     );
 }

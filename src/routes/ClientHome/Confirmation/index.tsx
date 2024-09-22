@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { OrderDTO } from "../../../models/order"
 import * as orderService from '../../../services/order-service';
 import { Link, useParams } from "react-router-dom";
+
 export default function Confirmation() {
 
     const params = useParams();
@@ -15,7 +16,7 @@ export default function Confirmation() {
                 setOrder(response.data);
             })
 
-    }, []);
+    }, [params.orderId]);
 
 
     return (

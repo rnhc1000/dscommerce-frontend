@@ -43,8 +43,7 @@ export default function ProductDetails() {
 
   return (
 
-    <>
-      <main>
+    <main>
         <section id="product-details-section" className="dsc-container">
           {
             product &&
@@ -60,7 +59,6 @@ export default function ProductDetails() {
           </div>
         </section>
       </main>
-    </>
 
   );
   
